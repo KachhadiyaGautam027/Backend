@@ -65,43 +65,24 @@ const Auth = (req, res, next) => {
 //     }
 // };
 
-// const AdminAuth = (req, res, next) => {
-//     let { Admintoken } = req.cookies;
-
-//     // console.log("Received token:", Admintoken); 
-
-//     if (Admintoken) {
-//         try {
-//             const decode = jwt.verify(Admintoken, process.env.AdminSecrate);
-//             req.adminID = decode.id;
-//             console.log("Decoded Admin ID:", req.adminID);
-//             next();
-//         } catch (error) {
-//             console.error("Token verification failed:", error.message, error);
-//             return res.status(403).json("Invalid token");
-//         }
-//     } else {
-//         console.error("Authorization failed: No token provided");
-//         res.status(403).json("You are not authorized");
-//     }
-// };
-
 const AdminAuth = (req, res, next) => {
-    const { Admintoken } = req.cookies;
+    let { Admintoken } = req.cookies;
 
-    if (!Admintoken) {
-        return res.status(403).json({ message: 'No token provided.' });
-    }
+    // console.log("Received token:", Admintoken); 
 
-    try {
-        const decoded = jwt.verify(Admintoken, process.env.AdminSecrate);
-        if (decoded.role !== 'admin') {
-            return res.status(403).json({ message: 'Access denied. Admins only.' });
+    if (Admintoken) {
+        try {
+            const decode = jwt.verify(Admintoken, process.env.AdminSecrate);
+            req.adminID = decode.id;
+            console.log("Decoded Admin ID:", req.adminID);
+            next();
+        } catch (error) {
+            console.error("Token verification failed:", error.message, error);
+            return res.status(403).json("Invalid token");
         }
-        req.adminID = decoded.id; // Attach adminID to request for further use
-        next();
-    } catch (error) {
-        return res.status(403).json({ message: 'Invalid or expired token.' });
+    } else {
+        console.error("Authorization failed: No token provided");
+        res.status(403).json("You are not authorized");
     }
 };
 
