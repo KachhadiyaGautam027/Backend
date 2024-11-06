@@ -33,7 +33,15 @@ app.get('/', (req, res) => {
   res.send('Welcome to the Healthcare System API');
 });
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server connected on port ${process.env.PORT}`);
+
+const PORT = process.env.PORT || 5000;
+
+// app.listen(process.env.PORT, () => {
+//   console.log(`Server connected on port ${process.env.PORT}`);
+//   connect();
+// });
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
   connect();
 });
