@@ -11,27 +11,27 @@ const AppointmentRoute = require("./Routes/Appointment.Route");
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-// app.use(
-//   cors({
-//     origin: "https://patient-frontend-tgu5.vercel.app", // Adjust with your Vercel URL
-//     credentials: true,
-//   })
-// );
-const allowedOrigins = [
-  'https://patient-frontend-kkt3.vercel.app', // Replace with your current frontend URL
-];
 
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
+  origin: "https://patient-frontend-kkt3.vercel.app", // Replace with your frontend URL
+  credentials: true, // Allows credentials to be sent in the request
 }));
+
+app.use(express.json());
+
+// const allowedOrigins = [
+//   'https://patient-frontend-kkt3.vercel.app', // Replace with your current frontend URL
+// ];
+
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   }
+// }));
 app.use(cookieParser());
 
 
