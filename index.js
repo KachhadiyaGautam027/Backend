@@ -15,7 +15,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://patient-frontend-tgu5.vercel.app"], // Adjust with your Vercel URL
+    origin: "https://patient-frontend-tgu5.vercel.app", // Adjust with your Vercel URL
     credentials: true,
   })
 );
