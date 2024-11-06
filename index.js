@@ -21,7 +21,6 @@ app.use(express.json());
 // );
 const allowedOrigins = [
   'https://patient-frontend-896d.vercel.app', // Replace with your current frontend URL
-  'https://patient-frontend-tgu5.vercel.app'  // Add other frontend URLs if needed
 ];
 
 app.use(cors({
