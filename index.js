@@ -28,6 +28,11 @@ app.use("/doctor", DoctorRoute);
 app.use("/Appointment", AppointmentRoute);
 app.use("/prescription", PrescriptionRoute);
 
+
+app.get('/', (req, res) => {
+  res.send('Welcome to the Healthcare System API');
+});
+
 app.listen(process.env.PORT, () => {
   console.log(`Server connected on port ${process.env.PORT}`);
   connect();
