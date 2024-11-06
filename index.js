@@ -20,7 +20,7 @@ app.use(express.json());
 //   })
 // );
 const allowedOrigins = [
-  'https://patient-frontend-896d.vercel.app', // Replace with your current frontend URL
+  'https://patient-frontend-kkt3.vercel.app', // Replace with your current frontend URL
 ];
 
 app.use(cors({
