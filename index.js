@@ -19,11 +19,20 @@ app.use(express.json());
 //     credentials: true,
 //   })
 // );
-const corsops = {
-  origin: 'https://patient-frontend-tgu5.vercel.app',  
-  credentials: true,
-};
-app.use(cors(corsops));
+const allowedOrigins = [
+  'https://patient-frontend-896d.vercel.app', // Replace with your current frontend URL
+  'https://patient-frontend-tgu5.vercel.app'  // Add other frontend URLs if needed
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+}));
 app.use(cookieParser());
 
 
