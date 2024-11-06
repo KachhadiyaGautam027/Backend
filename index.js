@@ -13,13 +13,19 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(
-  cors({
-    origin: "https://patient-frontend-tgu5.vercel.app", // Adjust with your Vercel URL
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: "https://patient-frontend-tgu5.vercel.app", // Adjust with your Vercel URL
+//     credentials: true,
+//   })
+// );
+const corsops = {
+  origin: 'https://patient-frontend-tgu5.vercel.app',  
+  credentials: true,
+};
+app.use(cors(corsops));
 app.use(cookieParser());
+
 
 // Route handlers
 app.use("/patient", PatientRoute);
